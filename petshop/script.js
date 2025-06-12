@@ -31,7 +31,11 @@ const pets = [
   { "name": "Fluffy", "type": "Rabbit", "age": 1, "img": "img/rabbits/rabbit02.jpg" }
 ];
 
+
+
 const ap = document.getElementById("all-pets");
+
+
 
 pets.forEach(pet => {
   const petDiv = document.createElement("div");
@@ -54,6 +58,10 @@ pets.forEach(pet => {
   ap.appendChild(petDiv);
 });
 
+
+
 document.addEventListener('DOMContentLoaded', loadPets);
+
+
 
 console.log('Pets loaded successfully.'); 
