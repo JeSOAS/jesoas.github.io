@@ -19,7 +19,7 @@ const pets = [
   { "name": "Mittens", "type": "Cat", "age": 2, "img": "img/cats/cat02.jpg" },
   { "name": "Nuclear Missile", "type": "Cat", "age": 3, "img": "img/cats/cat03.jpg" },
   { "name": "Luna", "type": "Cat", "age": 2, "img": "img/cats/cat04.jpg" },
-  { "name": "Milo", "type": "Cat", "age": 0.3, "img": "img/cats/cat05.webp" },
+  { "name": "Milo", "type": "Cat", "age": 1, "img": "img/cats/cat05.webp" },
   { "name": "Charlie", "type": "Dog", "age": 4, "img": "img/dogs/dog01.jpg" },
   { "name": "Buddy", "type": "Dog", "age": 3, "img": "img/dogs/dog02.jpg" },
   { "name": "Shadow", "type": "Dog", "age": 5, "img": "img/dogs/dog03.jpg" },
