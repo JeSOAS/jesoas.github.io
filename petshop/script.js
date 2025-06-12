@@ -39,7 +39,6 @@ pets.forEach(pet => {
 
   const img = document.createElement("img");
   img.src = pet.img;
-  img.alt = `Cute ${pet.type}`;
 
   const info = document.createElement("p");
   info.textContent = `${pet.name} - ${pet.type}, Age ${pet.age}`;
