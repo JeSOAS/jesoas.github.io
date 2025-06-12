@@ -8,7 +8,7 @@
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
 
-    <title>Our Pets</title> 
+    <title>Pet Store</title> 
 
     <link rel="stylesheet" href="style.css">
 
@@ -22,9 +22,9 @@
 
         <nav> 
 
-            <a href="index.html">Home</a> 
+            <a href="#">Home</a> 
 
-            <a href=#>Pets</a> 
+            <a href="pets.html">Pets</a> 
 
             <div class="button2" onclick="funnyMsg()">Contact</div>
 
@@ -35,14 +35,37 @@
  
 
     <main> 
-		<div class ="container">
-			<div class ="infobox">
+
         <section class="featured"> 
-			<h2>All Pets</h2>
-            <div id="all-pets" class="pet-list"></div>
-			</div>
+
+            <h2>Featured Pets</h2> 
+
+            <div class="pet-list"> 
+
+                <div class="pet"> 
+
+                    <img src="img/dogs/golden-retriever-dog-breed-info.jpeg" alt="Cute Dog"> 
+
+                    <p>Charlie - Golden Retriever</p> 
+
+                    <button onclick="adoptPet()">Adopt Now</button> 
+
+                </div> 
+
+                <div class="pet"> 
+
+                    <img src="img/cats/Macic-britanske-kratkodlake-macke_3.webp" alt="Cute Cat"> 
+
+                    <p>Milo - British Shorthair</p> 
+
+                    <button onclick="adoptPet()">Adopt Now</button> 
+
+                </div> 
+
+            </div> 
+
         </section> 
-		</div>
+
     </main> 
 
  
@@ -66,9 +89,13 @@
 				</iframe>
 			</div>
 		</div>
-    </footer> 
+		 
+		
+		
+		
+    </footer>
 
-    <script src="script.js" defer></script> 
+    <script src="script.js"></script> 
 
 </body> 
 
