@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<header class="shop-header">
+  <div class="logo-box">
+    <img src="img/logo.png" alt="Logo" class="logo-img">
+    <span class="logo-title">JeSOAS's accessory Shop</span>
+  </div>
+</header>
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>JeSOAS's accessory Shop</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"/>
+  <link rel="stylesheet" href="css/styles.css"/>
+</head>
+
+<body>
+  <div class="container">
+    <p>Date: <span id="quotationDate"></span></p>
+
+    <table class="table table-bordered" id="quotationTable">
+      <thead>
+        <tr>
+          <th class="text-center">Qty</th>
+          <th>Description</th>
+          <th class="text-right">Unit Price</th>
+          <th class="text-right">Amount</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- items inserted here -->
+      </tbody>
+      <tfoot>
+        <tr>
+          <td colspan="2" class="text-right"><strong>Subtotal</strong></td>
+          <td colspan="2" class="text-right" id="subTotal">0.00</td>
+        </tr>
+        <tr>
+          <td colspan="2" class="text-right"><strong>VAT (7%)</strong></td>
+          <td colspan="2" class="text-right" id="vat">0.00</td>
+        </tr>
+        <tr>
+          <td colspan="2" class="text-right"><strong>Total</strong></td>
+          <td colspan="2" class="text-right" id="total">0.00</td>
+        </tr>
+      </tfoot>
+    </table>
+
+    <button class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">Add Item</button>
+  </div>
+
+  <!-- Modal -->
+  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title">Add Product</h4>
+        </div>
+        <div class="modal-body">
+          <table class="table">
+            <tr>
+              <td>Product</td>
+              <td>
+                <select id="productSelect" class="form-control">
+                  <!-- options injected by JS -->
+                </select>
+              </td>
+            </tr>
+            <tr>
+              <td>Price / Unit</td>
+              <td><input id="ppuDisplay" class="form-control" type="text" readonly></td>
+            </tr>
+            <tr>
+              <td>Quantity</td>
+              <td><input type="number" min="1" id="newItemQty" class="form-control" value="1"></td>
+            </tr>
+          </table>
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-default" data-dismiss="modal">Cancel</button>
+          <button class="btn btn-success" onclick="addItem()">Save New Item</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <script>
+    const catalog = [
+      { description: 'USB‑C Cable',        unitPrice: 120.00 },
+      { description: 'Bluetooth Headset',  unitPrice: 450.00 },
+      { description: 'Laptop Stand',       unitPrice: 780.00 },
+      { description: '32 GB Flash Drive',  unitPrice: 310.00 },
+      { description: 'HDMI Adapter',       unitPrice: 190.00 }
+    ];
+
+    let quotationData = [];
+
+    function populateCatalog() {
+      const $sel = $('#productSelect');
+      $sel.empty().append('<option disabled selected value="">-- select --</option>');
+      catalog.forEach((p, i) => {
+        $sel.append(`<option value="${i}" data-price="${p.unitPrice}">
+          ${p.description} – ฿${p.unitPrice.toFixed(2)}
+        </option>`);
+      });
+    }
+
+    function renderTable() {
+      const subTotal = quotationData.reduce((sum, r) => sum + r.unitPrice * r.quantity, 0);
+      const vat   = +(subTotal * 0.07).toFixed(2);
+      const total = +(subTotal + vat).toFixed(2);
+      $('#subTotal').text(subTotal.toFixed(2));
+      $('#vat').text(vat.toFixed(2));
+      $('#total').text(total.toFixed(2));
+
+      $('.data-row').remove();
+      quotationData.forEach((r, i) => {
+        const amount = r.unitPrice * r.quantity;
+        $('#quotationTable tbody').append(`
+          <tr class="data-row">
+            <td class="text-center">${r.quantity}</td>
+            <td class="data">
+              <button class="btn btn-xs btn-danger" onclick="deleteItem(${i})">✕</button>
+              ${r.description}
+            </td>
+            <td class="text-right">${r.unitPrice.toFixed(2)}</td>
+            <td class="text-right">${amount.toFixed(2)}</td>
+          </tr>`);
+      });
+    }
+
+    function deleteItem(i) {
+      quotationData.splice(i, 1);
+      renderTable();
+    }
+
+    function addItem() {
+      const index = +$('#productSelect').val();
+      const qty = +$('#newItemQty').val();
+      if (isNaN(index)) return alert('Choose a product');
+      if (qty <= 0) return alert('Enter a quantity');
+
+      const product = catalog[index];
+      quotationData.push({
+        description: product.description,
+        unitPrice:   product.unitPrice,
+        quantity:    qty
+      });
+
+      $('#exampleModal').modal('hide');
+      renderTable();
+      $('#productSelect').val('');
+      $('#ppuDisplay').val('');
+      $('#newItemQty').val(1);
+    }
+
+    $(document).ready(() => {
+	  const today = new Date();
+	  const options = { year: 'numeric', month: 'long', day: 'numeric' };
+	  $('#quotationDate').text(today.toLocaleDateString('en-US', options));
+
+      populateCatalog();
+      $('#productSelect').on('change', function () {
+        const price = $('option:selected', this).data('price');
+        $('#ppuDisplay').val(price ? price.toFixed(2) : '');
+      });
+
+      // If using static JSON file:
+      $.getJSON('data/data.json', data => {
+        quotationData = data.map(d => ({
+          description: d.description,
+          quantity: +d.quantity,
+          unitPrice: +d.unitPrice
+        }));
+        $('#quotationDate').text(new Date().toDateString());
+        renderTable();
+      });
+    });
+  </script>
+</body>
+</html>

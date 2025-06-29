@@ -1,0 +1,148 @@
+table {
+    border-spacing: 0px;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+th {
+    background-color: rgb(184, 212, 231);
+    color: darkblue;
+    border: solid #000000 1px;
+}
+
+td {
+    vertical-align: top;
+}
+
+#sub-total {
+    border-top: solid #000 1px;
+}
+
+#bottom-line {
+    border-bottom: solid #000 1px;
+}
+
+.data {
+    border-left: solid #000000 1px;
+    border-right: solid #000000 1px;
+}
+
+.data2 {
+    border-right: solid #000000 1px;
+}
+
+p.i {
+    font-style: italic;
+  }
+
+.r {
+    text-align: right;
+}
+
+.cen {
+    text-align: center;
+}
+
+.center {
+    margin: auto;
+  }
+
+.colo {
+    font-weight: bold;
+    color: darkblue;
+}
+
+.thick {
+    font-weight: bold;
+}
+
+.tab { 
+    display:inline-block; 
+    margin-left: 40px; 
+}
+
+body {
+  font-family: 'Segoe UI', sans-serif;
+  background: #f5f7fb;
+  color: #333;
+  margin: 0;
+  padding: 0;
+}
+
+.container {
+  background: white;
+  margin-top: 30px;
+  padding: 30px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.05);
+  border-radius: 12px;
+}
+
+.shop-header {
+  background-color: #ffffff;
+  padding: 15px 30px;
+  border-bottom: 1px solid #ddd;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
+.logo-box {
+  display: flex;
+  align-items: center;
+}
+
+.logo-img {
+  height: 48px;
+  width: auto;
+  margin-right: 15px;
+}
+
+.logo-title {
+  font-size: 24px;
+  font-weight: 600;
+  color: #0074d9;
+}
+
+table th {
+  background-color: #0074d9;
+  color: white;
+  text-align: center;
+}
+
+table td {
+  vertical-align: middle;
+}
+
+tfoot td {
+  font-weight: bold;
+  background-color: #eef3f9;
+}
+
+.data button.btn-danger {
+  margin-right: 6px;
+  padding: 2px 6px;
+}
+
+.modal-content {
+  border-radius: 10px;
+}
+
+.modal-title {
+  font-weight: 600;
+}
+
+.modal-footer .btn-success {
+  background-color: #2ecc71;
+  border-color: #27ae60;
+}
+
+.btn-primary {
+  background-color: #0074d9;
+  border-color: #0074d9;
+}
+
+.btn-primary:hover {
+  background-color: #005fa3;
+}
+
+.btn-success:hover {
+  background-color: #239b56;
+}
